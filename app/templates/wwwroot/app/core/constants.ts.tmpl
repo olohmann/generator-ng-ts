@@ -1,0 +1,8 @@
+module <%= appModuleName %>.Core {
+    'use strict';
+
+    var core = angular.module('<%= appName %>.core');
+
+    core.constant('moment', moment);
+    core.constant('toastr', toastr);
+}

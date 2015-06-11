@@ -1,0 +1,32 @@
+{
+  "name": "generator-ng-ts",
+  "version": "0.1.0",
+  "description": "Yeoman generator",
+  "license": "MIT",
+  "main": "app/index.js",
+  "repository": "olohmann/generator-ng-ts",
+  "author": {
+    "name": "Oliver Lohmann",
+    "email": "olohmann@gmail.com",
+    "url": "http://www.oliver-lohmann.me"
+  },
+  "files": [
+    "app"
+  ],
+  "keywords": [
+    "yeoman-generator",
+    "typescript",
+    "angular",
+    "tsconfig.json"
+  ],
+  "dependencies": {
+    "bluebird": "^2.9.27",
+    "chalk": "^1.0.0",
+    "lodash": "^3.9.3",
+    "mkdirp": "^0.5.0",
+    "slash": "^1.0.0",
+    "underscore.string": "^3.0.3",
+    "yeoman-generator": "^0.19.0",
+    "yosay": "^1.0.2"
+  }
+}

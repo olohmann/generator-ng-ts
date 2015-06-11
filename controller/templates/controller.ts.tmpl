@@ -1,0 +1,14 @@
+module <%= moduleNamePascalized %> {
+    'use strict';
+
+    var ngModule = angular.module('<%= moduleNameCamelized %>');
+
+    export class <%= namePascalized %>Controller {
+        static $inject = <any>[];
+
+        constructor() {
+        }
+    }
+
+    ngModule.controller('<%= nameCamelized %>Controller', <%= namePascalized %>Controller);
+}

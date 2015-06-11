@@ -1,0 +1,37 @@
+module <%= moduleNamePascalized %> {
+    'use strict';
+
+    var ngModule = angular.module('<%= moduleNameCamelized %>');
+
+    export class <%= namePascalized %>Directive implements angular.IDirective {
+        static factory = function() {
+            return new <%= namePascalized %>Directive();
+        }
+
+        constructor() {
+            this.link = this._link.bind(this);
+        }
+
+        restrict = 'AE';
+        replace = false;
+        template = '<span><%= namePascalized %></span>'; // or templateUrl
+        require : any = undefined;
+
+        controllerAs = 'vm';
+        bindToController = true;
+        controller = '<%= nameCamelized %>DirectiveController'
+
+        scope = {};
+
+        link: angular.IDirectiveLinkFn;
+        private _link(
+            scope: angular.IScope,
+            element: ng.IAugmentedJQuery,
+            attrs: angular.IAttributes,
+            controller: any,
+            transclude: angular.ITranscludeFunction) {
+        }
+    }
+
+    ngModule.directive('<%= nameCamelized %>Directive', <%= namePascalized %>Directive.factory);
+}

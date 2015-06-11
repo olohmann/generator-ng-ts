@@ -1,0 +1,12 @@
+module <%= appModuleName %>.Core {
+    'use strict';
+
+    var core = angular.module('<%= appName %>.core');
+
+    var config = {
+        appErrorPrefix: '[<%= appName %> Error] ',
+        appTitle: '<%= appName %>'
+    };
+
+    core.value('config', config);
+}

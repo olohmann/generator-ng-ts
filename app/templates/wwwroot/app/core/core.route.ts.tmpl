@@ -1,0 +1,25 @@
+module <%= appModuleName %>.Core {
+    'use strict';
+
+    var core = angular.module('<%= appName %>.core');
+
+    core.run(appRun);
+
+    function appRun(routerHelper : any) {
+        var otherwise = '/404';
+        routerHelper.configureStates(getStates(), otherwise);
+    }
+
+    function getStates() {
+        return [
+            {
+                state: '404',
+                config: {
+                    url: '/404',
+                    templateUrl: 'app/core/404.html',
+                    title: '404'
+                }
+            }
+        ];
+    }
+}

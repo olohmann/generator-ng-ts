@@ -1,0 +1,4 @@
+{
+    "appName": "<%= appName %>",
+    "wwwRoot": "<%= wwwRoot %>"
+}

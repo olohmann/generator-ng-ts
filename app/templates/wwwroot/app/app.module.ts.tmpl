@@ -1,0 +1,6 @@
+module <%= appModuleName %> {
+    'use strict';
+
+    export var app: angular.IModule =
+        angular.module('<%= appName %>', ['<%= appName %>.core', '<%= appName %>.home', 'blocks.log', 'blocks.exception', 'blocks.router']);
+}

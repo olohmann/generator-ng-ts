@@ -1,0 +1,27 @@
+{
+    "name": "<%= appName %>",
+    "description": "<%= appName %> Project Generated from ng-ts",
+    "version": "0.0.0",
+    "repository": {},
+    "dependencies": {},
+    "devDependencies": {
+        "gulp": "^3.8.10",
+        "gulp-concat": "^2.5.2",
+        "gulp-help": "^1.3.4",
+        "gulp-if": "^1.2.5",
+        "gulp-inject": "^1.2.0",
+        "gulp-insert": "^0.4.0",
+        "gulp-json-editor": "^2.2.1",
+        "gulp-load-plugins": "^0.7.0",
+        "gulp-order": "^1.1.1",
+        "gulp-print": "^1.1.0",
+        "gulp-run": "^1.6.8",
+        "gulp-tsconfig": "^0.1.0",
+        "gulp-typescript": "^2.7.5",
+        "gulp-util": "^3.0.1",
+        "run-sequence": "^1.1.0",
+        "vinyl": "^0.5.0",
+        "wiredep": "^2.1.0",
+        "yargs": "^1.3.3"
+    }
+}

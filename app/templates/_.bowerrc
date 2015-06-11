@@ -1,0 +1,6 @@
+{
+  "directory": "<%= wwwRoot %>/vendor",
+  "scripts": {
+      "postinstall": "gulp wiredep"
+  }
+}
