@@ -14,6 +14,14 @@
 
 * Adopts some of the infrastructure components of [John Papa](http://www.johnpapa.net/)'s [HotTowel generator](https://github.com/johnpapa/generator-hottowel), but tries to avoid much of the template-throw-away-code.
 
+## Missing Features
+
+Some features that might be added in future releases:
+
+* Complete minification flow (including vendor components)
+* LESS support
+* Unit testing item templates & gulp tasks
+
 ## Getting Started
 
 ### Installation
@@ -25,31 +33,53 @@ npm install -g generator-ng-ts
 
 ### Scaffold an App
 ```bash
-mkdir my-app
-cd my-app
+mkdir app
+cd app
 yo ng-ts 
+```
+
+Result:
+```
++---.settings                              editor settings VS Code
+\---wwwroot                                static web root
+    +---app                                angular app root
+    |   +---blocks                         infrastructure components
+    |   |   +---exception
+    |   |   +---log
+    |   |   \---router
+    |   +---core                           routing and core app config
+    |   \---home                           the home module
+    +---styles                             CSS
+    +---typings                            TypeScript typings
+    |   +---angularjs
+    |   [... more typings ...]
+    \---vendor                             3rd party components (via bower) 
+        +---angular
+        [... vendor components ...]
 ```
 
 ### Scaffold a Module
 ```
-cd my-app/wwwroot/app
+cd wwwroot/app
 mkdir widgets
+cd widgets
 yo ng-ts:module
 ```
 
-Scaffolding is conventional. The name of the module will be the name of the subfolder hierarchy. The initial app name that you provided will be respected.
+Creates a file `widgets.module.ts`.
 
-Examples:
-* Folder: `my-app/wwwroot/app/widgets` --> module name: `myapp.widgets`
-* Folder: `my-app/wwwroot/app/utils/widgets` --> module name: `myapp.utils.widgets`
+Scaffolding is conventional. The name of the module will be derived automaticall via inspecting your subfolder hierarchy. 
 
 ### Scaffold a Directive
 ```
-cd my-app/wwwroot/app/widgets
 yo ng-ts:directive dateTimeNow
 ```
 
+Creates three files: 
 
+* `dateTimeNow.directive.controller.ts`
+* `dateTimeNow.directive.ts`
+* `dateTimeNow.directive.html`
 
 ### Getting To Know Yeoman
 

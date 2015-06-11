@@ -14,7 +14,7 @@ module <%= moduleNamePascalized %> {
 
         restrict = 'AE';
         replace = false;
-        template = '<span><%= namePascalized %></span>'; // or templateUrl
+        templateUrl = '<%= relativePathToWwwRoot %>/<%= nameCamelized %>.directive.html';
         require : any = undefined;
 
         controllerAs = 'vm';

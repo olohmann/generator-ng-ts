@@ -48,12 +48,28 @@ function readConfig(dir) {
     });
 }
 
+function getRelativePathToWwwRoot(dir) {
+    return readConfig(dir).then(function (config) {
+        var relativePath = slash(path.relative(config.wwwRoot, dir));
+        if (relativeModulePath.indexOf('..') !== -1) {
+            throw new Error('Cannot create an item outside of the static web root.');
+        }
+        return relativePath;
+    });
+}
+
 function deriveModuleName(dir) {
     return readConfig(dir).then(function (config) {
-        var relativeModulePath = slash(path.relative(config.wwwRoot, dir));
-        return relativeModulePath.split('/').join('.');
+        var relativeModulePath = slash(path.relative(path.join(config.wwwRoot, 'app'), dir));
+        if (relativeModulePath.indexOf('..') !== -1) {
+            throw new Error('Cannot create an item outside of the "app" root.');
+        }
+
+        var segments = [config.appName].concat(relativeModulePath.split('/'));
+        return segments.join('.');
     });
 }
 
 module.exports.readConfig = readConfig;
 module.exports.deriveModuleName= deriveModuleName;
+module.exports.getRelativePathToWwwRoot = getRelativePathToWwwRoot;

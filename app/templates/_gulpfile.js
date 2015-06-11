@@ -29,6 +29,8 @@ gulp.task('test', false /*'Execute tests as configured in Karma'*/, function() {
     log(colors.red('TODO: Not Implement.'));
 });
 
+gulp.task('build', 'Build the project.', ['tsbuild']);
+
 gulp.task('tsbuild', 'Build the TypeScript project (compile and wire).', function(cb) {
    runSequence('tscompile', 'wiredep', cb);
 });

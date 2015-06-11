@@ -20,7 +20,8 @@ module.exports = subgeneratorBase.extend({
             nameCamelized: that.nameCamelized,
             namePascalized: that.namePascalized,
             moduleNameCamelized: that.moduleNameCamelized,
-            moduleNamePascalized: that.moduleNamePascalized
+            moduleNamePascalized: that.moduleNamePascalized,
+            relativePathToWwwRoot: that.relativePathToWwwRoot
         };
 
         this.fs.copyTpl(

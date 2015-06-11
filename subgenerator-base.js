@@ -29,28 +29,21 @@ module.exports = yeoman.generators.NamedBase.extend({
         .then(function (name) {
             that.module = name;
             done();
-        })
-        .error(function(err) {
-            console.log('Could not derive a module name automatically. Manual input required.');
-
-            var prompts = [{
-                type: 'input',
-                name: 'module',
-                message: 'Which module are you targeting?',
-                default: 'MyModule'
-            }];
-
-            that.prompt(prompts, function(answers) {
-                that.module = answers.module;
-                done();
-            });
         });
     },
 
     _default: function() {
+        var that = this;
+        var done = that.async();
         this.nameCamelized = nameProcessor.getCamelizedName(this.name);
         this.namePascalized = nameProcessor.getClassName(this.name);
         this.moduleNameCamelized = nameProcessor.getCamelizedName(this.module);
         this.moduleNamePascalized = nameProcessor.getModuleName(this.module);
+
+        ngTsEnvironment.getRelativePathToWwwRoot(process.cwd())
+        .then(function (relativePath) {
+            that.relativePathToWwwRoot = relativePath;
+            done();
+        });
     }
 });
