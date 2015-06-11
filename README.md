@@ -1,6 +1,6 @@
 # generator-ng-ts [![Build Status](https://secure.travis-ci.org/olohmann/generator-ng-ts.png?branch=master)](https://travis-ci.org/olohmann/generator-ng-ts)
 
-> A [Yeoman](http://yeoman.io) generator for [Angular 1.x](https://angularjs.org/) projects built with [TypeScript](http://www.typescriptlang.org/).
+> A [Yeoman](http://yeoman.io) generator for [Angular 1.x](https://angularjs.org/) [TypeScript](http://www.typescriptlang.org/) projects.
 
 ## Features
 
