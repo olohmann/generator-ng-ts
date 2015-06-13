@@ -4,23 +4,23 @@
 
 ## Features
 
-* Creates a full-blown Angular/TypeScript project setup. Including a gulpfile that is able to generate a [tsconfig.json](https://github.com/Microsoft/TypeScript/wiki/tsconfig.json) file for maxiumum editor compatibilty. No gulpfile compiler magic! It simply calls your installed TypeScript compiler which automatically picks up the `tsconfig.json` file.
+* Creates a **complete Angular/TypeScript project setup**. Including a gulpfile that is able to maintain a standard  [tsconfig.json](https://github.com/Microsoft/TypeScript/wiki/tsconfig.json) file for maxiumum editor compatibilty. There is no gulpfile TypeScript compiler magic involved! The gulp build task simply calls your installed TypeScript compiler which automatically picks up the setup in the `tsconfig.json` file.
 
-* Supports Angular sub-generators. So far directives, controllers and modules are covered.
+* Supports **Angular sub-generators**. So far directives, controllers and modules are covered.
 
-* It is server agnostic and just creates static HTML, JavaScript and CSS files. That is, this generator does not rely on Node.JS or ASP.NET 5. 
+* It is **server framework agnostic**. That is, it just creates static HTML, JavaScript and CSS files in a sub-directory of your choice (e.g. `public` or `wwwroot`). Thus you can use the generator to in combination with a Node.JS or ASP.NET 5 backend. 
 
-* Adheres to established community guidelines. That is the structure and coding aims for compatibilty with [John Papa](http://www.johnpapa.net/)'s excellent [Angular styleguide]().
+* Adheres to established **community guidelines**. That is, the structure and coding aims for compatibilty with [John Papa](http://www.johnpapa.net/)'s excellent [Angular styleguide](https://github.com/johnpapa/angular-styleguide).
 
-* Adopts some of the infrastructure components of [John Papa](http://www.johnpapa.net/)'s [HotTowel generator](https://github.com/johnpapa/generator-hottowel), but tries to avoid much of the template-throw-away-code.
+* Adopts some of the infrastructure components of [John Papa](http://www.johnpapa.net/)'s [HotTowel generator](https://github.com/johnpapa/generator-hottowel), but tries to avoid the template-throw-away-code.
 
-## Missing Features
+## Currently Missing Features
 
-Some features that might be added in future releases:
+Features for future releases:
 
 * Complete minification flow (including vendor components)
 * LESS support
-* Unit testing item templates & gulp tasks
+* Item templates & gulp tasks for (unit) testing
 
 ## Getting Started
 
@@ -80,6 +80,14 @@ Creates three files:
 * `dateTimeNow.directive.controller.ts`
 * `dateTimeNow.directive.ts`
 * `dateTimeNow.directive.html`
+
+### Gulp Tasks
+
+The gulpfile has a built-in help page that lists all the tasks and provides a short description:
+
+```bash
+gulp help
+```
 
 ### Getting To Know Yeoman
 
