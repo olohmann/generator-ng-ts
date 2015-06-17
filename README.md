@@ -8,7 +8,7 @@
 
 * Supports **Angular sub-generators**. So far directives, controllers and modules are covered.
 
-* It is **server framework agnostic**. That is, it just creates static HTML, JavaScript and CSS files in a sub-directory of your choice (e.g. `public` or `wwwroot`). Thus you can use the generator to in combination with a Node.JS or ASP.NET 5 backend. 
+* It is **server framework agnostic**. That is, it just creates static HTML, JavaScript and CSS files in a sub-directory of your choice (e.g. `public` or `wwwroot`). Thus you can use the generator to in combination with a Node.JS or ASP.NET 5 backend.
 
 * Adheres to established **community guidelines**. That is, the structure and coding aims for compatibilty with [John Papa](http://www.johnpapa.net/)'s excellent [Angular styleguide](https://github.com/johnpapa/angular-styleguide).
 
@@ -27,15 +27,20 @@ Features for future releases:
 ### Installation
 
 ```bash
+npm install -g tsd
+npm install -g typescript
+npm install -g bower
 npm install -g yo
 npm install -g generator-ng-ts
 ```
+
+You need to install tsd, bower and typescript as globals since the ng-ts generator toolchain relies on it.
 
 ### Scaffold an App
 ```bash
 mkdir app
 cd app
-yo ng-ts 
+yo ng-ts
 ```
 
 Result:
@@ -53,7 +58,7 @@ Result:
     +---typings                            TypeScript typings
     |   +---angularjs
     |   [... more typings ...]
-    \---vendor                             3rd party components (via bower) 
+    \---vendor                             3rd party components (via bower)
         +---angular
         [... vendor components ...]
 ```
@@ -68,14 +73,14 @@ yo ng-ts:module
 
 Creates a file `widgets.module.ts`.
 
-Scaffolding is conventional. The name of the module will be derived automaticall via inspecting your subfolder hierarchy. 
+Scaffolding is conventional. The name of the module will be derived automaticall via inspecting your subfolder hierarchy.
 
 ### Scaffold a Directive
 ```
 yo ng-ts:directive dateTimeNow
 ```
 
-Creates three files: 
+Creates three files:
 
 * `dateTimeNow.directive.controller.ts`
 * `dateTimeNow.directive.ts`
