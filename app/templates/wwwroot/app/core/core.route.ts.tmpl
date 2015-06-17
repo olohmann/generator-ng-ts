@@ -5,8 +5,8 @@ module <%= appModuleName %>.Core {
 
     core.run(appRun);
 
-    function appRun(routerHelper : any) {
-        var otherwise = '/404';
+    function appRun(routerHelper: any) {
+        var otherwise = '404';
         routerHelper.configureStates(getStates(), otherwise);
     }
 
@@ -15,9 +15,11 @@ module <%= appModuleName %>.Core {
             {
                 state: '404',
                 config: {
-                    url: '/404',
-                    templateUrl: 'app/core/404.html',
-                    title: '404'
+                    url: '/404:origin',
+                    templateUrl: 'app/core/notFound.html',
+                    title: '404',
+                    controller: 'notFoundController',
+                    controllerAs: 'vm'
                 }
             }
         ];

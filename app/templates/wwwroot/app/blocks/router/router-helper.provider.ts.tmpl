@@ -12,10 +12,10 @@ module Blocks.Router {
     }
 
     export interface IRouterHelper {
-        configureStates(states : Array<IStateConfig>) : void;
-        configureStates(states : Array<IStateConfig>, otherwisePath : string) : void;
-        getStates() : angular.ui.IState[];
-        stateCounts : IStateCounts;
+        configureStates(states: Array<IStateConfig>): void;
+        configureStates(states: Array<IStateConfig>, otherwiseState: string): void;
+        getStates(): angular.ui.IState[];
+        stateCounts: IStateCounts;
     }
 
     export interface IRouterHelperProviderConfig {
@@ -24,13 +24,13 @@ module Blocks.Router {
     }
 
     export class RouterHelperProvider implements angular.IServiceProvider {
-        private config : IRouterHelperProviderConfig;
+        private config: IRouterHelperProviderConfig;
         static $inject = ['$locationProvider', '$stateProvider', '$urlRouterProvider'];
 
         constructor(
-            private $locationProvider : angular.ILocationProvider,
-            private $stateProvider : angular.ui.IStateProvider,
-            private $urlRouterProvider : angular.ui.IUrlRouterProvider) {
+            private $locationProvider: angular.ILocationProvider,
+            private $stateProvider: angular.ui.IStateProvider,
+            private $urlRouterProvider: angular.ui.IUrlRouterProvider) {
 
             this.config = {
                 docTitle: '',
@@ -46,10 +46,10 @@ module Blocks.Router {
         }
 
         public $get(
-            $location : angular.ILocationService,
-            $rootScope : angular.IRootScopeService,
+            $location: angular.ILocationService,
+            $rootScope: angular.IRootScopeService,
             $state: angular.ui.IStateService,
-            logger : Blocks.Log.Logger) : IRouterHelper {
+            logger: Blocks.Log.Logger): IRouterHelper {
             var $stateProvider = this.$stateProvider;
             var $locationProvider = this.$locationProvider;
             var $urlRouterProvider = this.$urlRouterProvider;
@@ -73,25 +73,41 @@ module Blocks.Router {
 
             return service;
 
-            function init() : void {
+            function init(): void {
                 handleRoutingErrors();
                 updateDocTitle();
             }
 
-            function configureStates(states : Array<IStateConfig>, otherwisePath?: string) : void {
+            function configureStates(states: Array<IStateConfig>, otherwiseState?: string): void {
+                // Remap root calls, i.e. http://example.org/ --> http://example.org/#/
+                $urlRouterProvider.when('', '/');
+
                 states.forEach(function(state) {
                     state.config.resolve =
-                        angular.extend(state.config.resolve || {}, config.resolveAlways);
+                    angular.extend(state.config.resolve || {}, config.resolveAlways);
                     $stateProvider.state(state.state, state.config);
                 });
 
-                if (otherwisePath && !hasOtherwise) {
+                if (otherwiseState && !hasOtherwise) {
                     hasOtherwise = true;
-                    $urlRouterProvider.otherwise(otherwisePath);
+                    $urlRouterProvider.otherwise(
+                        ($injector: angular.auto.IInjectorService, $location: any) => {
+                            var href = $state.href(otherwiseState,
+                                {
+                                    origin: $location.$$url
+                                });
+
+                            // Remove the leading hash, otherwise ui-router gets confused.
+                            if (href.indexOf('#') === 0) {
+                                return href.substr(1, href.length);
+                            } else {
+                                return href;
+                            }
+                        });
                 }
             }
 
-            function handleRoutingErrors() : void {
+            function handleRoutingErrors(): void {
                 // Route cancellation:
                 // On routing error, go to the dashboard.
                 // Provide an exit clause if it tries to do it twice.
@@ -111,14 +127,14 @@ module Blocks.Router {
                         logger.warning(msg, [toState], '');
                         $location.path('/');
                     }
-                );
+                    );
             }
 
-            function getStates() : angular.ui.IState[] {
+            function getStates(): angular.ui.IState[] {
                 return $state.get();
             }
 
-            function updateDocTitle() : void {
+            function updateDocTitle(): void {
                 $rootScope.$on('$stateChangeSuccess',
                     function(event, toState, toParams, fromState, fromParams) {
                         stateCounts.changes++;
@@ -126,12 +142,12 @@ module Blocks.Router {
                         var title = config.docTitle + ' ' + (toState.title || '');
                         (<any>$rootScope).title = title; // data bind to <title>
                     }
-                );
+                    );
             }
         }
     }
 
     angular
-       .module('blocks.router')
-       .provider('routerHelper', RouterHelperProvider);
+        .module('blocks.router')
+        .provider('routerHelper', RouterHelperProvider);
 }

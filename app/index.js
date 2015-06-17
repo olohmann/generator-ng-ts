@@ -107,7 +107,8 @@ module.exports = generators.Base.extend({
                 ['wwwroot/app/blocks/router/router-helper.provider.ts.tmpl', that.wwwRoot + '/app/blocks/router/router-helper.provider.ts'],
                 ['wwwroot/app/blocks/router/router.module.ts.tmpl', that.wwwRoot + '/app/blocks/router/router.module.ts'],
 
-                ['wwwroot/app/core/404.html.tmpl', that.wwwRoot + '/app/core/404.html'],
+                ['wwwroot/app/core/notFound.html.tmpl', that.wwwRoot + '/app/core/notFound.html'],
+                ['wwwroot/app/core/notFound.controller.ts.tmpl', that.wwwRoot + '/app/core/notFound.controller.ts'],
                 ['wwwroot/app/core/config.ts.tmpl', that.wwwRoot + '/app/core/config.ts'],
                 ['wwwroot/app/core/constants.ts.tmpl', that.wwwRoot + '/app/core/constants.ts'],
                 ['wwwroot/app/core/core.module.ts.tmpl', that.wwwRoot + '/app/core/core.module.ts'],

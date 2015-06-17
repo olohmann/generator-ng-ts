@@ -43,15 +43,7 @@ gulp.task('tscompile', 'Compile the TypeScript project (no wiring).', ['tsconfig
 gulp.task('tsconfig', 'Create TypeScript project file (tsconfig.json).', function() {
   var tsConfig = $.tsconfig({
     tsOrder: config.tsOrder,
-    tsConfig: {
-            "compilerOptions": {
-                "target": "ES3",
-                "removeComments": true,
-                "sourceMap": true,
-                "noImplicitAny": true,
-                "out": config.clientCompiledApp
-            }
-        }
+    tsConfig: config.tsConfig
   });
 
   return gulp.src([config.typings, config.ts])

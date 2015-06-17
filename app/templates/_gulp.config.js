@@ -34,7 +34,16 @@ module.exports = function() {
 
         css: [
             client + '/styles/*.css'
-        ]
+        ],
+
+        tsConfig: {
+            "compilerOptions": {
+                "removeComments": true,
+                "sourceMap": true,
+                "noImplicitAny": true,
+                "out": clientCompiledApp
+            }
+        }
     };
 
     /* -- BOWER --*/
