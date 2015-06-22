@@ -1,6 +1,6 @@
 {
   "name": "generator-ng-ts",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "A Yeoman generator for Angular 1.x TypeScript projects.",
   "license": "MIT",
   "main": "app/index.js",
@@ -11,7 +11,13 @@
     "url": "http://www.oliver-lohmann.me"
   },
   "files": [
-    "app"
+    "app",
+    "controller",
+    "directive",
+    "module",
+    "name-processor.js",
+    "ng-ts-environment.js",
+    "subgenerator-base.js"
   ],
   "keywords": [
     "yeoman-generator",
