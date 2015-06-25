@@ -1,6 +1,6 @@
 {
   "name": "generator-ng-ts",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "A Yeoman generator for Angular 1.x TypeScript projects.",
   "license": "MIT",
   "main": "app/index.js",
