@@ -38,6 +38,7 @@ module.exports = function() {
 
         tsConfig: {
             "compilerOptions": {
+                // "target": "es3",
                 "removeComments": true,
                 "sourceMap": true,
                 "noImplicitAny": true,

@@ -35,6 +35,14 @@ gulp.task('tsbuild', 'Build the TypeScript project (compile and wire).', functio
    runSequence('tscompile', 'wiredep', cb);
 });
 
+gulp.task('tslint', 'Run the TypeScript linter.', function () {
+    gulp.src(config.ts)
+        .pipe($.tslint())
+        .pipe($.tslint.report('prose', {
+        emitError: false
+    }));
+});
+
 gulp.task('tscompile', 'Compile the TypeScript project (no wiring).', ['tsconfig'], function(cb) {
     var cmd = new $.run.Command('tsc');
     cmd.exec(cb);
