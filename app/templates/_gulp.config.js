@@ -8,6 +8,9 @@ module.exports = function() {
     var clientCompiledAppName = 'app.js';
     var clientCompiledApp = path.join(client, clientCompiledAppName);
 
+    var tsClient =  [clientApp + '/**/*.ts'];
+    var tsTypings = [client + '/typings/tsd.d.ts'];
+
     var config = {
         client: client,
         clientSrcRootName: clientSrcRootName,
@@ -15,9 +18,11 @@ module.exports = function() {
 
         index: path.join(client, 'index.html'),
 
-        ts: clientApp + '/**/*.ts',
-        typings: client + '/typings/tsd.d.ts',
+        tsClient: tsClient,
+        tsTypings: tsTypings,
+        tsAll: [].concat(tsTypings).concat(tsClient),
         tsOrder: [
+            '**/*.d.ts',
             '**/app.module.ts',
             '**/*.module.ts',
             '**/*.ts'
@@ -38,7 +43,7 @@ module.exports = function() {
 
         tsConfig: {
             "compilerOptions": {
-                // "target": "es3",
+                "target": "es5",
                 "removeComments": true,
                 "sourceMap": true,
                 "noImplicitAny": true,

@@ -29,6 +29,26 @@ gulp.task('test', false /*'Execute tests as configured in Karma'*/, function() {
     log(colors.red('TODO: Not Implement.'));
 });
 
+gulp.task('serve-and-watch',
+  'Serve the static files and watch for changes', ['serve', 'watch-ts-tsbuild']);
+
+gulp.task('serve', 'Serve the static files.', function () {
+    return gulp.src(config.client)
+        .pipe($.webserver({
+            livereload: {
+                enable: true,
+                filter: function(fileName) {
+                if (fileName.match(/(\.map)|(\.ts)$/)) {
+                    return false;
+                } else {
+                    return true;
+                }
+            }},
+            open: true,
+            port: 1337
+    }));
+});
+
 gulp.task('build', 'Build the project.', ['tsbuild']);
 
 gulp.task('tsbuild', 'Build the TypeScript project (compile and wire).', function(cb) {
@@ -36,7 +56,7 @@ gulp.task('tsbuild', 'Build the TypeScript project (compile and wire).', functio
 });
 
 gulp.task('tslint', 'Run the TypeScript linter.', function () {
-    gulp.src(config.ts)
+    gulp.src(config.tsClient)
         .pipe($.tslint())
         .pipe($.tslint.report('prose', {
         emitError: false
@@ -54,14 +74,14 @@ gulp.task('tsconfig', 'Create TypeScript project file (tsconfig.json).', functio
     tsConfig: config.tsConfig
   });
 
-  return gulp.src([config.typings, config.ts])
+  return gulp.src(config.tsAll)
         .pipe(tsConfig())
         .pipe(gulp.dest('.'));
 });
 
 // ------------- Watchers  ---------------------------------
 gulp.task('watch-ts-tsbuild', 'Watch TS files and run "tsbuild" on change', function () {
-    var watcher = gulp.watch([config.typings, config.ts], ['tsbuild'], {debounceDelay: 300});
+    var watcher = gulp.watch(config.tsAll, ['tsbuild'], {debounceDelay: 300});
 
     watcher.on('change', function (event) {
         log('File ' + colors.red(event.path) + ' was ' + event.type + ', running tasks...');
@@ -69,7 +89,7 @@ gulp.task('watch-ts-tsbuild', 'Watch TS files and run "tsbuild" on change', func
 });
 
 gulp.task('watch-ts-tsconfig', 'Watch TS files and run "tsconfig" on change', function () {
-    var watcher = gulp.watch([config.typings, config.ts], ['tsconfig'], {debounceDelay: 300});
+    var watcher = gulp.watch(config.tsAll, ['tsconfig'], {debounceDelay: 300});
 
     watcher.on('change', function (event) {
         log('File ' + colors.red(event.path) + ' was ' + event.type + ', running tasks...');
