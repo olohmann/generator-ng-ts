@@ -28,7 +28,7 @@ Features for future releases:
 
 ```bash
 npm install -g tsd
-npm install -g typescript
+npm install -g typescript@1.5.0-beta
 npm install -g bower
 npm install -g yo
 npm install -g generator-ng-ts
