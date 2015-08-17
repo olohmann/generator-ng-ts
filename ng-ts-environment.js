@@ -8,7 +8,7 @@ Promise.promisifyAll(fs);
 
 var slash = require('slash');
 
-const ngTsConfig = '.ng-ts.json';
+var ngTsConfig = '.ng-ts.json';
 
 function isRootReached(dir, parentDir) {
     return dir === parentDir;
@@ -51,7 +51,7 @@ function readConfig(dir) {
 function getRelativePathToWwwRoot(dir) {
     return readConfig(dir).then(function (config) {
         var relativePath = slash(path.relative(config.wwwRoot, dir));
-        if (relativeModulePath.indexOf('..') !== -1) {
+        if (relativePath.indexOf('..') !== -1) {
             throw new Error('Cannot create an item outside of the static web root.');
         }
         return relativePath;
