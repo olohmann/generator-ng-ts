@@ -2,10 +2,11 @@
     "name": "<%= appName %>",
     "version": "0.0.0",
     "dependencies": {
-        "angular": "~1.4.0",
-        "angular-ui-router": "~0.2.15",
-        "moment": "~2.10.3",
-        "toastr": "~2.1.1"
+        "jquery": "^2.1.4",
+        "angular": "^1.4.4",
+        "angular-ui-router": "^0.2.15",
+        "moment": "^2.10.6",
+        "toastr": "^2.1.2"
     },
     "ignore": [
         "**/.*",
